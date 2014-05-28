@@ -1,0 +1,4 @@
+language: python
+
+script: "echo \"REGRESSION TESTS FOR NUPIC @ SHA `cat nupic_sha.txt`\""
+
