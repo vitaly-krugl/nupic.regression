@@ -1,3 +1,4 @@
+import sys
 import requests
 import tarfile
 
@@ -11,14 +12,20 @@ def fetchNupicTarballFor(sha):
   tarballName = "nupic-linux64-%s.tar.gz" % sha
   s3Url = "https://s3-%s.amazonaws.com/%s/%s/%s" % (REGION, BUCKET, REPO, tarballName)
   print "Fetching archive from %s..." % s3Url
+  blockCount = 0
   with open(tarballName, "wb") as handle:
     response = requests.get(s3Url, stream=True)
     if not response.ok:
       raise Exception("Cannot fetch tarball from %s" % s3Url)
     for block in response.iter_content(1024):
+      if blockCount % 10 == 0:
+        sys.stdout.write('.')
+        sys.stdout.flush()
+      blockCount += 1
       if not block:
         break
       handle.write(block)
+    print "\nDone."
 
 
 
