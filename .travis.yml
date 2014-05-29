@@ -1,4 +1,10 @@
 language: python
 
-script: "echo \"REGRESSION TESTS FOR NUPIC @ SHA `cat nupic_sha.txt`\""
+install:
+    - NUPIC_SHA=`cat nupic_sha.txt`
+    - python install_from_archive.py
+    - export NTA=`pwd`/nupic-linux64-$NUPIC_SHA
+    - export PYTHONPATH=$PYTHONPATH:$NTA/lib/python2.7/site-packages
 
+script: 
+    - python -c "import nupic"
