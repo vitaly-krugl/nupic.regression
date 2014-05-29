@@ -2,6 +2,7 @@ language: python
 
 install:
     - NUPIC_SHA=`cat nupic_sha.txt`
+    - pip install requests
     - python install_from_archive.py
     - export NTA=`pwd`/nupic-linux64-$NUPIC_SHA
     - export PYTHONPATH=$PYTHONPATH:$NTA/lib/python2.7/site-packages
