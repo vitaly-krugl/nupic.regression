@@ -7,10 +7,11 @@ BUCKET = "artifacts.numenta.org"
 REPO = "numenta/nupic"
 SHA_FILE = "nupic_sha.txt"
 
+# https://s3-us-west-2.amazonaws.com/artifacts.numenta.org/numenta/nupic/824ea05b2b883c3cf761d77801c6555cab9dc9fe/nupic-linux64-824ea05b2b883c3cf761d77801c6555cab9dc9fe.tar.gz
 
 def fetchNupicTarballFor(sha):
   tarballName = "nupic-linux64-%s.tar.gz" % sha
-  s3Url = "https://s3-%s.amazonaws.com/%s/%s/%s" % (REGION, BUCKET, REPO, tarballName)
+  s3Url = "https://s3-%s.amazonaws.com/%s/%s/%s/%s" % (REGION, BUCKET, REPO, sha, tarballName)
   print "Fetching archive from %s..." % s3Url
   blockCount = 0
   with open(tarballName, "wb") as handle:
@@ -18,7 +19,7 @@ def fetchNupicTarballFor(sha):
     if not response.ok:
       raise Exception("Cannot fetch tarball from %s" % s3Url)
     for block in response.iter_content(1024):
-      if blockCount % 10 == 0:
+      if blockCount % 100 == 0:
         sys.stdout.write('.')
         sys.stdout.flush()
       blockCount += 1
@@ -35,9 +36,11 @@ def untar(filePath):
   tarBall.extractall('.')
 
 
+
 def getSha():
   with open(SHA_FILE, "r") as shaFile:
     return shaFile.read().strip()
+
 
 
 if __name__ == "__main__":
