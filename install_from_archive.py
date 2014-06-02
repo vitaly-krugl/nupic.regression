@@ -7,7 +7,7 @@ BUCKET = "artifacts.numenta.org"
 REPO = "numenta/nupic"
 SHA_FILE = "nupic_sha.txt"
 
-# https://s3-us-west-2.amazonaws.com/artifacts.numenta.org/numenta/nupic/824ea05b2b883c3cf761d77801c6555cab9dc9fe/nupic-linux64-824ea05b2b883c3cf761d77801c6555cab9dc9fe.tar.gz
+
 
 def fetchNupicTarballFor(sha):
   tarballName = "nupic-linux64-%s.tar.gz" % sha
