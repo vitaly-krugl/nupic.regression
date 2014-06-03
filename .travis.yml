@@ -4,9 +4,13 @@ env:
     global:
         - export NUPIC=$TRAVIS_BUILD_DIR
 
+notifications:
+    email:
+        - nupic-hackers@lists.numenta.org
+
 install:
     - NUPIC_SHA=`cat nupic_sha.txt`
-    - printf "\n*********\nRunning NuPIC regression tests against:\n\thttps://github.com/numenta/nupic/tree/${NUPIC_SHA}\n*********\n"
+    - echo NUPIC SHA: ${NUPIC_SHA}
     - pip install requests
     - pip install nose
     - python install_from_archive.py
