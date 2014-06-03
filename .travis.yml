@@ -7,9 +7,9 @@ env:
 install:
     - NUPIC_SHA=`cat nupic_sha.txt`
     - pip install requests
-    - pip install unittest2
     - pip install nose
     - python install_from_archive.py
+    - travis_retry pip install -q -r nupic-linux64-${NUPIC_SHA}/requirements.txt
     - export NTA=`pwd`/nupic-linux64-$NUPIC_SHA
     - export PYTHONPATH=$PYTHONPATH:$NTA/lib/python2.7/site-packages
 
