@@ -1,5 +1,9 @@
 language: python
 
+env:
+    global:
+        - export NUPIC=$TRAVIS_BUILD_DIR
+
 install:
     - NUPIC_SHA=`cat nupic_sha.txt`
     - pip install requests
