@@ -10,7 +10,7 @@ notifications:
 
 install:
     - NUPIC_SHA=`cat nupic_sha.txt`
-    - echo "NUPIC SHA: ${NUPIC_SHA}"
+    - echo "NUPIC SHA: $NUPIC_SHA"
     - pip install requests
     - pip install nose
     - python install_from_archive.py
