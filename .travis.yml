@@ -6,7 +6,7 @@ env:
 
 install:
     - NUPIC_SHA=`cat nupic_sha.txt`
-    - echo "\n*********\nRunning NuPIC regression tests against:\n\thttps://github.com/numenta/nupic/tree/${NUPIC_SHA}\n*********\n"
+    - printf "\n*********\nRunning NuPIC regression tests against:\n\thttps://github.com/numenta/nupic/tree/${NUPIC_SHA}\n*********\n"
     - pip install requests
     - pip install nose
     - python install_from_archive.py
