@@ -12,12 +12,11 @@ install:
     - NUPIC_SHA=`cat nupic_sha.txt`
     - "echo NUPIC SHA: $NUPIC_SHA"
     - pip install requests
-    - pip install nose
     - python install_from_archive.py
     - travis_retry pip install -q -r nupic-linux64-${NUPIC_SHA}/requirements.txt
     - export NTA=`pwd`/nupic-linux64-$NUPIC_SHA
     - export NTA_CONF_PATH=$NTA/conf/default
     - export PYTHONPATH=$PYTHONPATH:$NTA/lib/python2.7/site-packages
 
-script: 
-    - nosetests
+script:
+    - py.test
