@@ -4,7 +4,7 @@ The tests in this repository are [regression tests](http://en.wikipedia.org/wiki
 
 ## WARNING
 
-**DO NOT EDIT THE `nupic_sha.txt` FILE!** 
+**DO NOT EDIT THE `nupic_sha.txt` FILE!**
 
 This file is automatically updated by the tooling server, and should never be manually edited.
 
@@ -32,15 +32,15 @@ To run locally against the target SHA (see `nupic_sha.txt`), be sure you've inst
     make -j4
     popd
     # Back to regression folder to run tests
-    nosetests
+    py.test
 
 ### Dependencies for running locally
 
-    pip install nose
+    pip install requests
 
 ## How it works
 
 On every build of the [nupic](https://github.com/numenta/nupic) `master` branch in Travis-CI, an archive of the `release` folder (including pip requirements) is uploaded to Amazon S3 for the latest commit SHA. When the `nupic` build completes, the [tooling server](https://github.com/numenta/nupic.tools) updates the SHA stored in `nupic_sha.txt` to the latest SHA that ran in Travis-CI and pushes it to `nupic.regression`.`master`. This triggers a regression test run in Travis-CI.
 
-When `nupic.regression` runs in Travis-CI, it downloads the archive for the `nupic` SHA specified in `nupic_sha.txt` into a local folder. Because the archive was build in the same Travis-CI environment as `nupic.regression` runs, the installation is compatible. All tests that comply with `unittest2` format in the `tests` directory are run. 
+When `nupic.regression` runs in Travis-CI, it downloads the archive for the `nupic` SHA specified in `nupic_sha.txt` into a local folder. Because the archive was build in the same Travis-CI environment as `nupic.regression` runs, the installation is compatible. All tests that comply with `unittest2` format in the `tests` directory are run.
 
