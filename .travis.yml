@@ -16,7 +16,7 @@ install:
     - python install_from_archive.py
     - travis_retry pip install -q -r nupic-linux64-${NUPIC_SHA}/requirements.txt
     - export NTA=`pwd`/nupic-linux64-$NUPIC_SHA
-    - export NTA_CONF_PATH=$NTA/tests/unit/py2/nupic/support/conf/default
+    - export NTA_CONF_PATH=$NTA/tests/unit/py2/nupic/support/conf
     - export PYTHONPATH=$PYTHONPATH:$NTA/lib/python2.7/site-packages
 
 script: 
