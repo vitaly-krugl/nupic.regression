@@ -20,4 +20,4 @@ install:
     - export PYTHONPATH=$PYTHONPATH:$NTA/lib/python2.7/site-packages
 
 script:
-    - py.test
+    - py.test tests/
