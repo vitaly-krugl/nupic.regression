@@ -32,7 +32,7 @@ To run locally against the target SHA (see `nupic_sha.txt`), be sure you've inst
     make -j4
     popd
     # Back to regression folder to run tests
-    py.test
+    py.test tests/
 
 ### Dependencies for running locally
 
