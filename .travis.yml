@@ -4,9 +4,9 @@ env:
     global:
         - export NUPIC=$TRAVIS_BUILD_DIR
 
-notifications:
-    email:
-        - nupic-hackers@lists.numenta.org
+#notifications:
+#    email:
+#        - nupic-hackers@lists.numenta.org
 
 install:
     - NUPIC_SHA=`cat nupic_sha.txt`
