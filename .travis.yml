@@ -13,7 +13,7 @@ install:
     - "echo NUPIC SHA: $NUPIC_SHA"
     - pip install requests
     - python install_from_archive.py
-    - pip install nupic-archive.tar
+    - pip install nupic-archive.tar.gz
 
 script:
     - py.test tests/
