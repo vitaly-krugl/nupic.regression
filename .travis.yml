@@ -13,10 +13,7 @@ install:
     - "echo NUPIC SHA: $NUPIC_SHA"
     - pip install requests
     - python install_from_archive.py
-    - travis_retry pip install -q -r nupic-linux64-${NUPIC_SHA}/requirements.txt
-    - export NTA=`pwd`/nupic-linux64-$NUPIC_SHA
-    - export NTA_CONF_PATH=$NTA/config/default
-    - export PYTHONPATH=$PYTHONPATH:$NTA/lib/python2.7/site-packages
+    - pip install nupic-archive.tar
 
 script:
     - py.test tests/

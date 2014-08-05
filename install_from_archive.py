@@ -1,6 +1,5 @@
 import sys
 import requests
-import tarfile
 
 REGION = "us-west-2"
 BUCKET = "artifacts.numenta.org"
@@ -10,7 +9,7 @@ SHA_FILE = "nupic_sha.txt"
 
 
 def fetchNupicTarballFor(sha):
-  tarballName = "nupic-linux64-%s.tar.gz" % sha
+  tarballName = "nupic-archive.tar.gz"
   s3Url = "https://s3-%s.amazonaws.com/%s/%s/%s/%s" % (REGION, BUCKET, REPO, sha, tarballName)
   print "Fetching archive from %s..." % s3Url
   blockCount = 0
@@ -27,13 +26,7 @@ def fetchNupicTarballFor(sha):
         break
       handle.write(block)
     print "\nDone."
-
-
-
-def untar(filePath):
-  print "Unzipping %s..." % filePath
-  tarBall = tarfile.open(filePath, 'r:gz')
-  tarBall.extractall('.')
+  return tarballName
 
 
 
@@ -46,4 +39,3 @@ def getSha():
 if __name__ == "__main__":
   sha = getSha()
   fetchNupicTarballFor(sha)
-  untar("nupic-linux64-%s.tar.gz" % sha)
