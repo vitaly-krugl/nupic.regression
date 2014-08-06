@@ -15,7 +15,7 @@ install:
 - pip install requests
 - pip install boto
 # These are the required python dependencies for NuPIC
-- pip install --allow-all-external --allow-unverified PIL --allow-unverified psutil -r /home/travis/build/numenta/nupic/external/common/requirements.txt
+- travis_retry pip install -q -r  /home/travis/build/numenta/nupic/external/common/requirements.txt
 # Fetches the binary distribution.
 - python fetch_binary.py
 # Unpacks the distro into the Travis-CI file system
