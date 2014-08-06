@@ -13,6 +13,6 @@ install:
 - pip install boto
 - python fetch_egg.py
 # - pip install nupic-archive.tar.gz
-- tar zxvf nupic-archive.tar.gz -C /
+- sudo tar zxvf nupic-archive.tar.gz -C /
 script:
 - py.test tests/
