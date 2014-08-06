@@ -1,20 +1,23 @@
 language: python
 
 env:
-    global:
-        - export NUPIC=$TRAVIS_BUILD_DIR
+  global:
+    - NUPIC=${TRAVIS_BUILD_DIR}
+    - AWS_ACCESS_KEY_ID: AKIAIGHYSEHV3WFKOWNQ
+    # AWS SECRET
+    - secure: "ONG00ZCPpfU/nugFiON3K2q8IMk3nB/aAUj2Ggjf1z0CJS/cvnfIexmJhe+DJCccoco2l5gpiqp7gweH5vXEcyrzTt1I3Z+iFNas2cQ/wF3LjW0NcbdGeC9NN9kGIoOvr8g6L66CUvazYoirgbJO01ktm7LVNeGS3Q1pk36Vp10="
 
 #notifications:
 #    email:
 #        - nupic-hackers@lists.numenta.org
 
 install:
-    - NUPIC_SHA=`cat nupic_sha.txt`
-    - "echo NUPIC SHA: $NUPIC_SHA"
-    - pip install requests
-    - pip install boto
-    - python fetch_egg.py
-    - pip install nupic-archive.tar.gz
+  - NUPIC_SHA=`cat nupic_sha.txt`
+  - "echo NUPIC SHA: $NUPIC_SHA"
+  - pip install requests
+  - pip install boto
+  - python fetch_egg.py
+  - pip install nupic-archive.tar.gz
 
 script:
-    - py.test tests/
+  - py.test tests/
