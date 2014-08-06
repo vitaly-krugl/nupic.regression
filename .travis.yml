@@ -14,12 +14,12 @@ install:
 # These are required for the fetch_egg script.
 - pip install requests
 - pip install boto
-# These are the required python dependencies for NuPIC
-- travis_retry pip install -q -r  /home/travis/build/numenta/nupic/external/common/requirements.txt
 # Fetches the binary distribution.
 - python fetch_binary.py
 # Unpacks the distro into the Travis-CI file system
 - sudo tar zxvf nupic-archive.tar.gz -C /
+# These are the required python dependencies for NuPIC
+- travis_retry pip install -q -r  /home/travis/build/numenta/nupic/requirements.txt
 
 script:
 - py.test tests/
