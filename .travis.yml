@@ -11,6 +11,7 @@ install:
 - 'echo NUPIC SHA: $NUPIC_SHA'
 - pip install requests
 - pip install boto
+- pip install unittest2
 - python fetch_egg.py
 # - pip install nupic-archive.tar.gz
 - sudo tar zxvf nupic-archive.tar.gz -C /
