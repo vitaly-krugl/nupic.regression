@@ -12,7 +12,8 @@ install:
     - NUPIC_SHA=`cat nupic_sha.txt`
     - "echo NUPIC SHA: $NUPIC_SHA"
     - pip install requests
-    - python install_from_archive.py
+    - pip install boto
+    - python fetch_egg.py
     - pip install nupic-archive.tar.gz
 
 script:
