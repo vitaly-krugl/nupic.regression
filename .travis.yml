@@ -3,17 +3,13 @@ language: python
 env:
   global:
     - NUPIC=${TRAVIS_BUILD_DIR}
-    - AWS_ACCESS_KEY_ID: AKIAIGHYSEHV3WFKOWNQ
-    # AWS SECRET
-    - secure: "ONG00ZCPpfU/nugFiON3K2q8IMk3nB/aAUj2Ggjf1z0CJS/cvnfIexmJhe+DJCccoco2l5gpiqp7gweH5vXEcyrzTt1I3Z+iFNas2cQ/wF3LjW0NcbdGeC9NN9kGIoOvr8g6L66CUvazYoirgbJO01ktm7LVNeGS3Q1pk36Vp10="
-
-#notifications:
-#    email:
-#        - nupic-hackers@lists.numenta.org
+    # AWS keys for boto.
+    - secure: PUuq8mT7xTnTkjfN5njJhzIvKTypoffQQAN4zwzcqKTRX4rnp/ysWUqAxiMBJ/xyu6dUSxy6IMxXdtoAZ2Sc4sKnwGfjszUFZZzDbIIfIN2SN7X2CmkmX28z7FSSksha3osBKwvtQ+gcAG++FOmTS0xWeKdUwt7g4tAO+NR9Byk=
+    - secure: JV0h8LykOOWkUVgMKZT4IzmMZAJac8UeeffAXBoWfBPQVVr2Y1XWz4ItpWS2n6zrVnn9AVnf8gz+qx0XrtvFhVd1LjuepfiSoCZyUd3tr0AYQWvQuSkqemOC+cDrmpnzXJ2vidMArFVoaUJZB2KFZy4hkGZx9olJftc+gZfZmRw=
 
 install:
   - NUPIC_SHA=`cat nupic_sha.txt`
-  - "echo NUPIC SHA: $NUPIC_SHA"
+  - 'echo NUPIC SHA: $NUPIC_SHA'
   - pip install requests
   - pip install boto
   - python fetch_egg.py
