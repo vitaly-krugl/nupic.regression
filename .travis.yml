@@ -1,5 +1,9 @@
 language: python
 
+notifications:
+  email:
+  - nupic-hackers@lists.numenta.org
+
 env:
   global:
   - NUPIC=$TRAVIS_BUILD_DIR
