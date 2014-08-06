@@ -1,4 +1,5 @@
 import sys
+import os
 import requests
 from boto.s3.connection import S3Connection
 
@@ -7,9 +8,11 @@ BUCKET = "artifacts.numenta.org"
 REPO = "numenta/nupic"
 SHA_FILE = "nupic_sha.txt"
 LOCAL_BINARY_ARCHIVE = "nupic-archive.tar.gz"
+AWS_KEY = os.environ["AWS_ACCESS_KEY_ID"]
+AWS_SECRET = os.environ["AWS_SECRET_ACCESS_KEY"]
 
 def fetchNupicEggFor(sha):
-  conn = S3Connection()
+  conn = S3Connection(AWS_KEY, AWS_SECRET)
   artifactsBucket = conn.get_bucket(BUCKET)
   s3Url = None
 
