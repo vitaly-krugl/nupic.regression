@@ -1,20 +1,16 @@
 language: python
-
 env:
   global:
-    - NUPIC=$TRAVIS_BUILD_DIR
-    # AWS keys for boto.
-    - AWS_ACCESS_KEY_ID=AKIAIGHYSEHV3WFKOWNQ
-    - secure: JV0h8LykOOWkUVgMKZT4IzmMZAJac8UeeffAXBoWfBPQVVr2Y1XWz4ItpWS2n6zrVnn9AVnf8gz+qx0XrtvFhVd1LjuepfiSoCZyUd3tr0AYQWvQuSkqemOC+cDrmpnzXJ2vidMArFVoaUJZB2KFZy4hkGZx9olJftc+gZfZmRw=
-
+  - NUPIC=$TRAVIS_BUILD_DIR
+  - AWS_ACCESS_KEY_ID=AKIAIGHYSEHV3WFKOWNQ
+  - secure: bb3tUZZc17mhUzCFTvuiE4b8ZCaa5rrnGdGZweLFlR7Ukx1UXNnpjGoBSR4opOR+1tWr9inMXkNCw2k6vbtXDmxiI+7oT7CUA7C8dPt4SgJ1kwLWS1UhdQZXZPZhKskraf+cMXPjffhEGxuHvqq8uQvdKG6KTY5hSsdXgZTJTgE=
 install:
-  - NUPIC_SHA=`cat nupic_sha.txt`
-  - echo $AWS_ACCESS_KEY_ID
-  - "echo NUPIC SHA: $NUPIC_SHA"
-  - pip install requests
-  - pip install boto
-  - python fetch_egg.py
-  - pip install nupic-archive.tar.gz
-
+- NUPIC_SHA=`cat nupic_sha.txt`
+- echo $AWS_ACCESS_KEY_ID
+- 'echo NUPIC SHA: $NUPIC_SHA'
+- pip install requests
+- pip install boto
+- python fetch_egg.py
+- pip install nupic-archive.tar.gz
 script:
-  - py.test tests/
+- py.test tests/
