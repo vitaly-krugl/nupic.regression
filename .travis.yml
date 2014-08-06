@@ -10,7 +10,7 @@ env:
 install:
   - NUPIC_SHA=`cat nupic_sha.txt`
   - echo $AWS_ACCESS_KEY_ID
-  - echo NUPIC SHA: $NUPIC_SHA
+  - echo "NUPIC SHA: $NUPIC_SHA"
   - pip install requests
   - pip install boto
   - python fetch_egg.py
