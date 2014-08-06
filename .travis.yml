@@ -4,7 +4,7 @@ env:
   global:
     - NUPIC=$TRAVIS_BUILD_DIR
     # AWS keys for boto.
-    - AWS_ACCESS_KEY=AKIAIGHYSEHV3WFKOWNQ
+    - AWS_ACCESS_KEY_ID=AKIAIGHYSEHV3WFKOWNQ
     - secure: JV0h8LykOOWkUVgMKZT4IzmMZAJac8UeeffAXBoWfBPQVVr2Y1XWz4ItpWS2n6zrVnn9AVnf8gz+qx0XrtvFhVd1LjuepfiSoCZyUd3tr0AYQWvQuSkqemOC+cDrmpnzXJ2vidMArFVoaUJZB2KFZy4hkGZx9olJftc+gZfZmRw=
 
 install:
