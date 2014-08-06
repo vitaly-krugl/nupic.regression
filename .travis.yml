@@ -2,10 +2,12 @@ language: python
 env:
   global:
   - NUPIC=$TRAVIS_BUILD_DIR
+  - PYTHONPATH=/home/travis/build/numenta/nupic/lib/python2.7/site-packages:$PYTHONPATH
   - AWS_ACCESS_KEY_ID=AKIAIGHYSEHV3WFKOWNQ
   - secure: BqIdU+D/Vtt5tydjKc1jxc9tHHu8rK9WIv4VysJD++vRSLERYhaSI3Gy1pjB5rrc/VfdLAqWmC7YdmTwEudyVtl0niUF5Zdtztq777qWK2PCxQBUAAXBqaYKNmHDXaBO0I63oTrfevM6OD7UspHqbBzfJhU9RF9GYSy7mz9cvYM=
 install:
 - echo $TRAVIS_SECURE_ENV_VARS
+- echo $PYTHONPATH
 - NUPIC_SHA=`cat nupic_sha.txt`
 - echo $AWS_ACCESS_KEY_ID
 - 'echo NUPIC SHA: $NUPIC_SHA'
