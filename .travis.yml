@@ -1,9 +1,8 @@
 language: python
 
 notifications:
-  email:
-  - nupic-hackers@lists.numenta.org
-  webhooks: https://webhooks.gitter.im/e/68f77bae61efa5c931f8
+  email: "nupic-hackers@lists.numenta.org"
+  webhooks: "https://webhooks.gitter.im/e/68f77bae61efa5c931f8"
 
 env:
   global:
