@@ -28,7 +28,7 @@ install:
 - sudo tar zxvf nupic-archive.tar.gz -C /
 
 # These are the required python dependencies for NuPIC
-- travis_retry pip install -r  /home/travis/build/numenta/nupic/requirements.txt
+- travis_retry pip install -q -r /home/travis/build/numenta/nupic/requirements.txt
 - export NTA_CONF_PATH=/home/travis/build/numenta/nupic
 
 # Clone nupic to get the tests
