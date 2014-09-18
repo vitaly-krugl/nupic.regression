@@ -39,7 +39,7 @@ script:
 
 # NuPIC swarming tests
 - cd nupic
-- ./scripts/run_tests.py -w
+- ./run_tests.sh -w
 - cd $TRAVIS_BUILD_DIR
 
 # Regressions tests
