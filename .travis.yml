@@ -43,7 +43,7 @@ script:
 
 # NuPIC swarming tests
 - cd $NUPIC
-- ./run_tests.sh -w
+- . ./run_tests.sh -w
 - cd $TRAVIS_BUILD_DIR
 
 # Regressions tests
