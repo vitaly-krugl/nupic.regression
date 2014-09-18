@@ -38,7 +38,9 @@ install:
 script:
 
 # NuPIC swarming tests
-- (cd nupic && ./scripts/run_tests.py -w)
+- cd nupic
+- ./scripts/run_tests.py -w)
+- cd $TRAVIS_BUILD_DIR
 
 # Regressions tests
 - py.test tests/
