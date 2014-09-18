@@ -38,7 +38,7 @@ install:
 script:
 
 # NuPIC swarming tests
-- (cd nupic && ./run_tests.py -w)
+- (cd nupic && ./scripts/run_tests.py -w)
 
 # Regressions tests
 - py.test tests/
