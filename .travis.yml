@@ -36,7 +36,9 @@ install:
 - git clone https://github.com/numenta/nupic-linux64.git
 - source nupic-linux64/bin/activate
 - echo "After nupic-linux64 activation"
-- ls -la /home/travis/.local/lib/python2.7/site-packages
+- ls -l /home/travis/build/numenta/nupic.regression/nupic-linux64/lib/python2.7/site-packages
+- ls -l /home/travis/build/numenta/nupic/lib/python2.7/site-packages
+- ls -l /home/travis/build/numenta/nupic.regression/nupic-linux64/nta/eng/lib/python2.7/site-packages
 - export PYTHONPATH=$PYTHONPATH:/home/travis/.local/lib/python2.7/site-packages
 - export NTA_CONF_PATH=/home/travis/build/numenta/nupic
 
