@@ -34,7 +34,11 @@ install:
 
 # These are the required python dependencies for NuPIC
 - git clone https://github.com/numenta/nupic-linux64.git
+- echo "Before nupic-linux64 activation"
+- ls -la /home/travis/.local/lib/python2.7/site-packages
 - source nupic-linux64/bin/activate
+- echo "After nupic-linux64 activation"
+- ls -la /home/travis/.local/lib/python2.7/site-packages
 - export PYTHONPATH=$PYTHONPATH:/home/travis/.local/lib/python2.7/site-packages
 - export NTA_CONF_PATH=/home/travis/build/numenta/nupic
 
