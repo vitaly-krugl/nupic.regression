@@ -35,13 +35,15 @@ install:
 # These are the required python dependencies for NuPIC
 - git clone https://github.com/numenta/nupic-linux64.git
 - source nupic-linux64/bin/activate
-- echo "After nupic-linux64 activation"
+# Add location of nupic-linux64 platform dependencies to path
+- export PYTHONPATH=$PYTHONPATH:/home/travis/.local/lib/python$PY_VER/site-packages
+# debug
+- ls /home/travis/.local/lib/python$PY_VER/site-packages
 - export NTA_CONF_PATH=/home/travis/build/numenta/nupic
 
 # Clone nupic to get the tests
 - git clone https://github.com/numenta/nupic.git
 - (cd nupic && git reset --hard ${NUPIC_SHA} && rm -rf nupic)
-- export PYTHONPATH=$PYTHONPATH:/home/travis/build/numenta/nupic.regression/nupic/lib/python2.7/site-packages
 
 script:
 
