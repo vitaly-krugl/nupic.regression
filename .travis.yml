@@ -32,12 +32,10 @@ install:
 # These are the required python dependencies for NuPIC
 - git clone https://github.com/numenta/nupic-linux64.git
 - source nupic-linux64/bin/activate
-- export NTA_CONF_PATH=/home/travis/build/numenta/nupic
+- export NTA_CONF_PATH=/usr/local
 
 # Unpacks the distro into the Travis-CI file system
 - sudo tar zxvf nupic-archive.tar.gz -C /
-
-- ls -l /usr/local/lib/python2.7/dist-packages/nupic
 
 - export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/dist-packages
 
