@@ -37,8 +37,9 @@ install:
 # Unpacks the distro into the Travis-CI file system
 - sudo tar zxvf nupic-archive.tar.gz -C /
 
-# debug
-- ls /home/travis/build/numenta/nupic
+- ls -l /usr/local/lib/python2.7/dist-packages/nupic
+
+- export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/dist-packages
 
 # Clone nupic to get the tests
 - git clone https://github.com/numenta/nupic.git
