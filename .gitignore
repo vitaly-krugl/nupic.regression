@@ -3,4 +3,4 @@
 *.gz
 nupic-linux64-*/
 *.pyc
-wheels
+wheelhouse
