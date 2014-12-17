@@ -23,6 +23,8 @@ before_install:
   # These are required for the fetch_wheels.py script.
   - pip install requests
   - pip install boto
+  # For local test runs
+  - pip install pytest
 
   - NUPIC_SHA=`cat nupic_sha.txt`
   - 'echo NUPIC SHA: $NUPIC_SHA'
