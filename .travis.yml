@@ -24,25 +24,27 @@ before_install:
   - pip install requests
   - pip install boto
 
+  - NUPIC_SHA=`cat nupic_sha.txt`
+  - 'echo NUPIC SHA: $NUPIC_SHA'
+
+  # Clone nupic to get the tests & version
+  - git clone https://github.com/numenta/nupic.git
+  - (cd nupic && git reset --hard ${NUPIC_SHA} && rm -rf nupic)
+
 
 install:
 
   - echo $PYTHONPATH
   - echo $NUPIC
-  - NUPIC_SHA=`cat nupic_sha.txt`
-  - 'echo NUPIC SHA: $NUPIC_SHA'
 
   # Fetches the binary distribution.
   - python fetch_wheels.py
 
   # Install wheels we just downloaded.
-  - NUPIC_VERSION=`python -c "import nupic; print nupic.__version__"`
+  - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
   - echo "Installing NuPIC ${NUPIC_VERSION} with wheels..."
   - pip install --use-wheel --no-index --find-links=wheelhouse nupic==${NUPIC_VERSION}
 
-  # Clone nupic to get the tests
-  - git clone https://github.com/numenta/nupic.git
-  - (cd nupic && git reset --hard ${NUPIC_SHA} && rm -rf nupic)
 
 script:
 
