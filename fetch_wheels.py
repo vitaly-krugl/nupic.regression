@@ -1,15 +1,17 @@
 import sys
 import os
 import requests
-from boto.s3.connection import S3Connection
+import boto
+
+# This script assumes the following environment variables are set for boto:
+# - AWS_ACCESS_KEY_ID
+# - AWS_SECRET_ACCESS_KEY
 
 REGION = "us-west-2"
 BUCKET = "artifacts.numenta.org"
 REPO = "numenta/nupic"
 SHA_FILE = "nupic_sha.txt"
 WHEEL_DIR = "wheelhouse"
-AWS_KEY = os.environ["AWS_ACCESS_KEY_ID"]
-AWS_SECRET = os.environ["AWS_SECRET_ACCESS_KEY"]
 
 
 
@@ -37,7 +39,7 @@ def fetchWheel(url, localFilePath):
 
 
 def fetchWheels(sha):
-  conn = S3Connection(AWS_KEY, AWS_SECRET)
+  conn = boto.connect_s3(is_secure=False)
   artifactsBucket = conn.get_bucket(BUCKET)
   wheelDir = os.path.join(getScriptPath(), WHEEL_DIR)
 
