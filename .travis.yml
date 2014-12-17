@@ -19,7 +19,7 @@ before_install:
   # Upgrade pip
   - pip install --upgrade pip
   # Wheels is currently used for installation.
-  - pip install wheels
+  - pip install wheel
   # These are required for the fetch_wheels.py script.
   - pip install requests
   - pip install boto
