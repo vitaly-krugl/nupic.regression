@@ -45,7 +45,7 @@ install:
   # Install wheels we just downloaded.
   - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
   - echo "Installing NuPIC ${NUPIC_VERSION} with wheels..."
-  - pip install --use-wheel --no-index --find-links=wheelhouse nupic==${NUPIC_VERSION}
+  - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION}
 
 
 script:
