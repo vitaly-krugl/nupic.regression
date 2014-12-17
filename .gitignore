@@ -3,3 +3,5 @@
 *.gz
 nupic-linux64-*/
 *.pyc
+wheelhouse
+.cache
