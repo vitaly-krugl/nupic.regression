@@ -2,7 +2,6 @@ import sys
 import os
 import requests
 from boto.s3.connection import S3Connection
-import shutil
 
 REGION = "us-west-2"
 BUCKET = "artifacts.numenta.org"
@@ -63,7 +62,7 @@ def fetchWheels(sha):
 
     localFilePath = os.path.join(wheelDir, wheelName)
 
-    print "Fetching archive from %s..." % url
+    print "Fetching %s ..." % url
     fetchWheel(url, localFilePath)
 
 
