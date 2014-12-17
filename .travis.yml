@@ -33,8 +33,8 @@ install:
   - travis_retry python fetch_wheels.py
 
   # Install wheels we just downloaded.
-  - nupic_wheel=`ls wheelhouse/nupic*`
-  - pip install --use-wheel --no-index --find-links=wheelhouse ${nupic_wheel} --user
+  - NUPIC_VERSION=`python -c "import nupic; print nupic.__version__"`
+  - pip install --use-wheel --no-index --find-links=wheelhouse nupic==${NUPIC_VERSION}
 
   # Clone nupic to get the tests
   - git clone https://github.com/numenta/nupic.git
