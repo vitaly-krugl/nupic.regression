@@ -24,7 +24,7 @@ before_install:
   - pip install requests
   - pip install boto
   # For local test runs
-  - pip install pytest
+  - pip install pytest-xdist
 
   - NUPIC_SHA=`cat nupic_sha.txt`
   - 'echo NUPIC SHA: $NUPIC_SHA'
