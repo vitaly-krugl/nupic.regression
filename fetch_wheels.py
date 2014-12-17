@@ -40,7 +40,6 @@ def fetchWheels(sha):
   conn = S3Connection(AWS_KEY, AWS_SECRET)
   artifactsBucket = conn.get_bucket(BUCKET)
   wheelDir = os.path.join(getScriptPath(), WHEEL_DIR)
-  url = None
 
   # Here's where we put the wheels!
   if not os.path.exists(wheelDir):

@@ -33,7 +33,7 @@ install:
   - 'echo NUPIC SHA: $NUPIC_SHA'
 
   # Fetches the binary distribution.
-  - travis_retry python fetch_wheels.py
+  - python fetch_wheels.py
 
   # Install wheels we just downloaded.
   - NUPIC_VERSION=`python -c "import nupic; print nupic.__version__"`
