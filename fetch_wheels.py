@@ -47,7 +47,18 @@ def fetchWheels(sha):
   if not os.path.exists(wheelDir):
     os.makedirs(wheelDir)
 
-  for key in artifactsBucket.list(prefix="%s/%s" % (REPO, sha)):
+  wheels = artifactsBucket.list(prefix="%s/%s" % (REPO, sha))
+  wheelCount = sum(1 for _ in wheels)
+
+  if wheelCount is 0:
+    raise ValueError(
+      "Expected to find .whl files in %s/%s/%s, but found nothing!" % (BUCKET, REPO, sha)
+    )
+
+  print "Downloading %i wheels..." % wheelCount
+  downloaded = 0
+
+  for key in wheels:
     # Fail fast.
     if not key.name.endswith(".whl"):
       raise ValueError("Expected .whl file, found %s" % key.name)
@@ -65,7 +76,8 @@ def fetchWheels(sha):
 
     print "Fetching %s ..." % url
     fetchWheel(url, localFilePath)
-
+    downloaded += 1
+    print "%i files to download..." % (wheelCount - downloaded)
 
 
 def getSha():
