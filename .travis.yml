@@ -57,7 +57,7 @@ script:
 
   # NuPIC swarming tests
   - cd $NUPIC
-  - . ./run_tests.sh -w
+  - . ./scripts/run_nupic_tests -w
 
   # NuPIC example runs
   - . ./ci/travis/script-run-examples.sh
