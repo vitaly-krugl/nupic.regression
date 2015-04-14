@@ -26,10 +26,7 @@ To run locally against the target SHA (see `nupic_sha.txt`), be sure you've inst
     git pull upstream master
     git checkout ${REGRESSION_SHA_TARGET}
     git clean -dfx # careful here, you might nuke something you don't want to nuke
-    mkdir -p build/scripts
-    cd build/scripts
-    cmake ../..
-    make -j4
+    python setup.py install
     popd
     # Back to regression folder to run tests
     py.test tests/
@@ -37,6 +34,7 @@ To run locally against the target SHA (see `nupic_sha.txt`), be sure you've inst
 ### Dependencies for running locally
 
     pip install requests
+    pip install automatatron
 
 ## How it works
 
