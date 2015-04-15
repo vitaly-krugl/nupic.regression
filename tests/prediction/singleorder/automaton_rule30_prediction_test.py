@@ -10,26 +10,24 @@ import rule_30_model_params
 
 PREDICTED_FIELD = "bit_10"
 RULE_NUMBER = 30
-ITERATIONS = 581
 
 
-class AutomataPredictionTest(unittest.TestCase):
+class Rule30AutomataPredictionTest(unittest.TestCase):
   
   
   
-  def test_rule30_prediction_gets_to_100_percent_within_X_iterations(self):
+  def test_rule30_prediction_is_perfect_after_581_iterations(self):
     """
     Generates Rule 30 elementary cellular automaton and passes it through NuPIC.
     Asserts that predictions are perfect after X rows of data.
     """
+    iterations = 581
     model = ModelFactory.create(rule_30_model_params.MODEL_PARAMS)
     model.enableInference({"predictedField": PREDICTED_FIELD})
     prediction_history = deque(maxlen=500)
     counter = [0]
     last_prediction = [None]
-  
 
-  
     def stream_handler(row, _):
       counter[0] += 1
       input_row = {}
@@ -49,17 +47,19 @@ class AutomataPredictionTest(unittest.TestCase):
       
       correctness = reduce(lambda x, y: x + y, prediction_history) / len(prediction_history)
       
-      if count == ITERATIONS:
-        unittest.TestCase.assertEqual(self, 1.0, correctness, "Predictions should be 100 percent correct after reaching %i iterations." % ITERATIONS)
+      if count == iterations:
+        unittest.TestCase.assertEqual(
+          self, 1.0, correctness, 
+          "Predictions should be 100 percent correct after reaching %i iterations." % iterations
+        )
 
       result = model.run(input_row)
-  
+
       prediction = result.inferences["multiStepBestPredictions"][1]
       last_prediction[0] = prediction
-      
-  
-    automaton = automatatron.Engine(30)
-    automaton.run(handler=stream_handler, width=21, iterations=ITERATIONS)
+
+    automaton = automatatron.Engine(RULE_NUMBER)
+    automaton.run(handler=stream_handler, width=21, iterations=iterations)
 
 
 if __name__ == "__main__":
