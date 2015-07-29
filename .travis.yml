@@ -1,3 +1,5 @@
+sudo: false
+
 language: python
 
 notifications:
@@ -7,6 +9,15 @@ notifications:
     on_success: change
     on_failure: change
   webhooks: "https://webhooks.gitter.im/e/68f77bae61efa5c931f8"
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      # install gcc-4.8 for C++11 compatibility, #TODO remove when Travis has gcc>=4.8, (it's used for clang too, in coveralls)
+      - g++-4.8
+
 
 env:
   global:
@@ -34,14 +45,6 @@ before_install:
   # Clone nupic to get the tests & version
   - git clone https://github.com/numenta/nupic.git
   - (cd nupic && git reset --hard ${NUPIC_SHA} && rm -rf nupic)
-
-  # install gcc-4.8 for C++11 compatibility, #TODO remove when Travis has gcc>=4.8, (it's used for clang too, in coveralls)
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get -qq update
-  - sudo apt-get -qq install g++-4.8
-  - alias gcc='gcc-4.8'
-  - alias g++='g++-4.8'
-
 
 install:
 
