@@ -16,12 +16,12 @@ class Rule30AutomataPredictionTest(unittest.TestCase):
   
   
   
-  def test_rule30_prediction_is_perfect_after_590_iterations(self):
+  def test_rule30_prediction_is_perfect_after_600_iterations(self):
     """
     Generates Rule 30 elementary cellular automaton and passes it through NuPIC.
     Asserts that predictions are perfect after X rows of data.
     """
-    iterations = 590
+    iterations = 600
     model = ModelFactory.create(rule_30_model_params.MODEL_PARAMS)
     model.enableInference({"predictedField": PREDICTED_FIELD})
     prediction_history = deque(maxlen=500)
