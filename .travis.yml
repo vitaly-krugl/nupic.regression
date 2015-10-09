@@ -60,7 +60,7 @@ install:
   - echo "Installing NuPIC ${NUPIC_VERSION} with wheels..."
   - pip install https://s3-us-west-2.amazonaws.com/artifacts.numenta.org/numenta/nupic.core/releases/nupic.bindings/nupic.bindings-${NUPIC_CORE_VERSION}-cp27-none-linux_x86_64.whl
 
-  - pip install --use-wheel --no-index --find-links=wheelhouse nupic==${NUPIC_VERSION}
+  - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION}
 
 
 script:
