@@ -67,7 +67,7 @@ script:
 
   # NuPIC swarming tests
   - cd $NUPIC
-  - python ./scripts/run_nupic_tests -w
+  - python ./scripts/run_nupic_tests.py -w
 
   # NuPIC example runs
   - . ./ci/travis/script-run-examples.sh
