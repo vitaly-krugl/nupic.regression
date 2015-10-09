@@ -43,8 +43,8 @@ before_install:
   - 'echo NUPIC SHA: $NUPIC_SHA'
 
   # Clone nupic to get the tests & version
-  - git clone https://github.com/numenta/nupic.git
-  - (cd nupic && git reset --hard ${NUPIC_SHA} && rm -rf nupic)
+  - git clone https://github.com/numenta/nupic.git --depth 50
+  - (cd nupic && git reset --hard ${NUPIC_SHA})
 
 install:
 
