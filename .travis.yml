@@ -43,8 +43,9 @@ before_install:
   - 'echo NUPIC SHA: $NUPIC_SHA'
 
   # Clone nupic to get the tests & version
-  - git clone https://github.com/numenta/nupic.git
-  - (cd nupic && git reset --hard ${NUPIC_SHA} && rm -rf nupic)
+  - git clone https://github.com/numenta/nupic.git --depth 50
+  - (cd nupic && git reset --hard ${NUPIC_SHA})
+  - NUPIC_CORE_VERSION=`python get_nupic_bindings_version.py`
 
 install:
 
@@ -57,14 +58,16 @@ install:
   # Install wheels we just downloaded.
   - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
   - echo "Installing NuPIC ${NUPIC_VERSION} with wheels..."
-  - pip install --use-wheel --no-index --find-links=wheelhouse nupic==${NUPIC_VERSION}
+  - pip install https://s3-us-west-2.amazonaws.com/artifacts.numenta.org/numenta/nupic.core/releases/nupic.bindings/nupic.bindings-${NUPIC_CORE_VERSION}-cp27-none-linux_x86_64.whl
+
+  - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION}
 
 
 script:
 
   # NuPIC swarming tests
   - cd $NUPIC
-  - python ./scripts/run_nupic_tests -w
+  - python ./scripts/run_nupic_tests.py -w
 
   # NuPIC example runs
   - . ./ci/travis/script-run-examples.sh
