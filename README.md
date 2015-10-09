@@ -33,8 +33,7 @@ To run locally against the target SHA (see `nupic_sha.txt`), be sure you've inst
 
 ### Dependencies for running locally
 
-    pip install requests
-    pip install automatatron
+    pip install -r requirements.txt
 
 ## How it works
 
