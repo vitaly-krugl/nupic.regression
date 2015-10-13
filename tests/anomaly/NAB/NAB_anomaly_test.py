@@ -1,15 +1,11 @@
-# import datetime
 import unittest2 as unittest
 import json
-# import csv
-# from nupic.frameworks.opf.modelfactory import ModelFactory
-# import rec_center_hourly_model_params
-
 
 
 BENCHMARK_PATH = "tests/anomaly/NAB/benchmark_results.json"
 RESULTS_PATH = "../NAB/results/final_results.json"
 EPS = 10e-2
+
 
 
 class NABAnomalyTest(unittest.TestCase):
