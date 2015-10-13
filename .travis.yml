@@ -47,6 +47,9 @@ before_install:
   - (cd nupic && git reset --hard ${NUPIC_SHA})
   - NUPIC_CORE_VERSION=`python get_nupic_bindings_version.py`
 
+  # Clone NAB
+  - git clone https://github.com/numenta/NAB.git
+
 install:
 
   - echo $PYTHONPATH
@@ -61,6 +64,9 @@ install:
   - pip install https://s3-us-west-2.amazonaws.com/artifacts.numenta.org/numenta/nupic.core/releases/nupic.bindings/nupic.bindings-${NUPIC_CORE_VERSION}-cp27-none-linux_x86_64.whl
 
   - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION}
+  
+  # Install NAB
+  - (cd NAB && python setup.py install --user)
 
 
 script:
