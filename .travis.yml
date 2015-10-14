@@ -48,7 +48,7 @@ before_install:
   - NUPIC_CORE_VERSION=`python get_nupic_bindings_version.py`
 
   # Clone NAB
-  - git clone https://github.com/numenta/NAB.git
+  - git clone https://github.com/numenta/NAB.git --depth 50
 
 install:
 
