@@ -1,8 +1,9 @@
 import unittest2 as unittest
-import json, os
+import json
+import os
 
 
-BENCHMARK_PATH = "tests/anomaly/NAB/benchmark_results.json"
+BENCHMARK_PATH = "tests/anomaly/nab/benchmark_results.json"
 RESULTS_PATH = os.environ['NAB'] + "/results/final_results.json"
 EPS = 10e-2
 
@@ -15,7 +16,7 @@ class NABAnomalyTest(unittest.TestCase):
 
   def testNABScoresBenchmark(self):
     """Test that NAB on nupic produces expected scores."""
-        
+
     with open(BENCHMARK_PATH) as benchmarkFile:
       benchmarkData = json.load(benchmarkFile)
 
