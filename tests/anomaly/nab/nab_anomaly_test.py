@@ -5,8 +5,6 @@ import os
 
 BENCHMARK_PATH = "tests/anomaly/nab/benchmark_results.json"
 RESULTS_PATH = os.environ['NAB'] + "/results/final_results.json"
-RUN_NAB_CMD = "python " + os.environ['NAB'] + \
-  "/run.py -d numenta --detect --score --normalize --skipConfirmation"
 EPS = 10e-2
 
 
@@ -18,9 +16,6 @@ class NABAnomalyTest(unittest.TestCase):
 
   def testNABScoresBenchmark(self):
     """Test that NAB on nupic produces expected scores."""
-
-    # Run NAB nupic
-    os.system(RUN_NAB_CMD)
 
     with open(BENCHMARK_PATH) as benchmarkFile:
       benchmarkData = json.load(benchmarkFile)
