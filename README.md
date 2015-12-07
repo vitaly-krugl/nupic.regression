@@ -31,6 +31,11 @@ To run locally against the target SHA (see `nupic_sha.txt`), be sure you've inst
     # Back to regression folder to run tests
     py.test tests/
 
+Included in `tests/anomaly/` is a regression test for [NAB](https://github.com/numenta/NAB). To run locally you must have a NAB environment variable setup that points to your NAB clone repositiory:
+
+	export NAB='path/to/NAB/'
+	py.test tests/anomaly/nab/ # run NAB regression test
+
 ### Dependencies for running locally
 
     pip install requests
