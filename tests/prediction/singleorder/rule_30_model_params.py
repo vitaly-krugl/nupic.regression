@@ -83,7 +83,7 @@ MODEL_PARAMS = \
                                  'maxAge': 0,
                                  'maxSegmentsPerCell': 128,
                                  'maxSynapsesPerSegment': 32,
-                                 'minThreshold': 9,
+                                 'minThreshold': 12,
                                  'newSynapseCount': 20,
                                  'outputType': 'normal',
                                  'pamLength': 1,
