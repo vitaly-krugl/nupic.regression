@@ -7,7 +7,7 @@ notifications:
     recipients:
       - "nupic-hackers@lists.numenta.org"
     on_success: change
-    on_failure: change
+    on_failure: always
   webhooks: "https://webhooks.gitter.im/e/68f77bae61efa5c931f8"
 
 addons:
