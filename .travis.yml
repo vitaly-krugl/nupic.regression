@@ -22,6 +22,7 @@ addons:
 env:
   global:
   - NUPIC=$TRAVIS_BUILD_DIR/nupic
+  - NAB=$TRAVIS_BUILD_DIR/NAB
   - PYTHONPATH=/home/travis/build/numenta/nupic/lib/python2.7/site-packages:$NUPIC
   - AWS_ACCESS_KEY_ID=AKIAIGHYSEHV3WFKOWNQ
   - secure: BqIdU+D/Vtt5tydjKc1jxc9tHHu8rK9WIv4VysJD++vRSLERYhaSI3Gy1pjB5rrc/VfdLAqWmC7YdmTwEudyVtl0niUF5Zdtztq777qWK2PCxQBUAAXBqaYKNmHDXaBO0I63oTrfevM6OD7UspHqbBzfJhU9RF9GYSy7mz9cvYM=
@@ -47,6 +48,9 @@ before_install:
   - (cd nupic && git reset --hard ${NUPIC_SHA})
   - NUPIC_CORE_VERSION=`python get_nupic_bindings_version.py`
 
+  # Clone NAB
+  - git clone https://github.com/numenta/NAB.git --depth 50
+
 install:
 
   - echo $PYTHONPATH
@@ -61,6 +65,9 @@ install:
   - pip install https://s3-us-west-2.amazonaws.com/artifacts.numenta.org/numenta/nupic.core/releases/nupic.bindings/nupic.bindings-${NUPIC_CORE_VERSION}-cp27-none-linux_x86_64.whl
 
   - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION}
+  
+  # Install NAB
+  - (cd NAB && python setup.py install)
 
 
 script:
@@ -71,6 +78,11 @@ script:
 
   # NuPIC example runs
   - . ./ci/travis/script-run-examples.sh
+
+  # Remove checked in results file then run NAB
+  - cd $NAB
+  - rm results/final_results.json
+  - python run.py -d numenta --detect --score --normalize --skipConfirmation
 
   - cd $TRAVIS_BUILD_DIR
 
