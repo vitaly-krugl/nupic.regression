@@ -75,6 +75,11 @@ install:
   - ls -l wheelhouse
   - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION} --user
 
+  # DEBUGGIN
+  - cat /home/travis/.local/lib/python2.7/site-packages/pytest_xdist-1.8.dist-info
+  - printenv | sort
+  # DEBUGGIN
+
   - echo "Installing NAB..."
   - (cd ${NAB} && python setup.py install --user)
 
