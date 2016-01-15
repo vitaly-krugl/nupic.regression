@@ -70,17 +70,19 @@ before_install:
 
 install:
   # Required for fetch_wheels.py
-  - pip install requests --user
-  # Required for one of the regression tests
-  - pip install automatatron --user
-
+  - pip install requests boto --user
   # Fetches the binary distribution.
   - python fetch_wheels.py
+
   - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
   - echo "Installing NuPIC ${NUPIC_VERSION} from wheelhouse..."
   - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION}
+
   - echo "Installing NAB..."
   - (cd ${NAB} && python setup.py install --user)
+
+  # Required for one of the regression tests
+  - pip install automatatron --user
 
 
 script:
