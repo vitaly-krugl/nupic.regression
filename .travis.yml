@@ -56,17 +56,13 @@ before_install:
   - curl -O "https://s3-us-west-2.amazonaws.com/artifacts.numenta.org/numenta/nupic.core/nupic_core-${NUPIC_CORE_COMMITISH}-linux64.tar.gz"
   - tar xzf "nupic_core-${NUPIC_CORE_COMMITISH}-linux64.tar.gz"
   - "echo Wheels fetched from nupic.bindings nupic_core-${NUPIC_CORE_COMMITISH}-linux64.tar.gz"
-  - ls home/travis/build/numenta/nupic.core/bindings/py/dist/wheels
-
-  # Install nupic.bindings and dependencies from wheels
-  - pip install --user --no-index --find-links=home/travis/build/numenta/nupic.core/bindings/py/dist/wheels nupic.bindings
+  - mkdir wheelhouse
+  - mv home/travis/build/numenta/nupic.core/bindings/py/dist/wheels/* wheelhouse/.
 
   # Clone NAB
   - git clone https://github.com/numenta/NAB.git --depth 50
 
   - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
-
-
 
 install:
   # Required for fetch_wheels.py
@@ -76,6 +72,7 @@ install:
 
   - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
   - echo "Installing NuPIC ${NUPIC_VERSION} from wheelhouse..."
+
   - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION} --user
 
   - echo "Installing NAB..."
@@ -86,10 +83,6 @@ install:
 
 
 script:
-
-  - ls /home/travis/.local/lib/python2.7/site-packages
-  - ls /home/travis/.local/lib/python2.7/site-packages/pytest-xdist
-  - ls /home/travis/.local/lib/python2.7/site-packages/pytest-xdist/bin
 
   # NuPIC swarming tests
   - cd $NUPIC
