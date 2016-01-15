@@ -1,23 +1,33 @@
 sudo: false
 
-language: python
+language: cpp
+
+os:
+  - linux
+
+compiler:
+  - clang
+
+addons:
+  apt:
+    sources:
+      - deadsnakes
+      - ubuntu-toolchain-r-test
+    packages:
+      - python2.7
+      - python2.7-dev
+      # install gcc-4.8 for C++11 compatibility, #TODO remove when Travis has gcc>=4.8, (it's used for clang too, in coveralls)
+      - g++-4.8
+      - cmake
+      - cmake-data
 
 notifications:
   email:
     recipients:
       - "nupic-hackers@lists.numenta.org"
     on_success: change
-    on_failure: always
+    on_failure: change
   webhooks: "https://webhooks.gitter.im/e/68f77bae61efa5c931f8"
-
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      # install gcc-4.8 for C++11 compatibility, #TODO remove when Travis has gcc>=4.8, (it's used for clang too, in coveralls)
-      - g++-4.8
-
 
 env:
   global:
@@ -28,49 +38,56 @@ env:
   - secure: BqIdU+D/Vtt5tydjKc1jxc9tHHu8rK9WIv4VysJD++vRSLERYhaSI3Gy1pjB5rrc/VfdLAqWmC7YdmTwEudyVtl0niUF5Zdtztq777qWK2PCxQBUAAXBqaYKNmHDXaBO0I63oTrfevM6OD7UspHqbBzfJhU9RF9GYSy7mz9cvYM=
 
 before_install:
-
-  # Upgrade pip
-  - pip install --upgrade pip
-
-  # Wheels is currently used for installation.
-  - pip install wheel
-
-  # These are required for the fetch_wheels.py script.
-  - pip install requests
-  - pip install boto
-  - pip install automatatron
+  - cd ${TRAVIS_BUILD_DIR}
 
   - NUPIC_SHA=`cat nupic_sha.txt`
-  - 'echo NUPIC SHA: $NUPIC_SHA'
-
-  # Clone nupic to get the tests & version
+  - echo "Fetching NuPIC source code at SHA ${NUPIC_SHA}"
   - git clone https://github.com/numenta/nupic.git --depth 50
   - (cd nupic && git reset --hard ${NUPIC_SHA})
-  - NUPIC_CORE_VERSION=`python get_nupic_bindings_version.py`
+
+  - echo "INSTALLING NUPIC.CORE / NUPIC.BINDINGS"
+
+  # Fetch nupic.core build
+  - pushd ${NUPIC}
+  - export NUPIC_CORE_COMMITISH=`python -c "execfile('.nupic_modules'); print NUPIC_CORE_COMMITISH"`
+  - popd
+  - "echo Installing NuPIC at SHA ${NUPIC_CORE_COMMITISH}"
+  - "echo Downloading nupic.core build: https://s3-us-west-2.amazonaws.com/artifacts.numenta.org/numenta/nupic.core/nupic_core-${NUPIC_CORE_COMMITISH}-linux64.tar.gz"
+  - curl -O "https://s3-us-west-2.amazonaws.com/artifacts.numenta.org/numenta/nupic.core/nupic_core-${NUPIC_CORE_COMMITISH}-linux64.tar.gz"
+  - tar xzf "nupic_core-${NUPIC_CORE_COMMITISH}-linux64.tar.gz"
+  - "echo Wheels fetched from nupic.bindings nupic_core-${NUPIC_CORE_COMMITISH}-linux64.tar.gz"
+  - ls home/travis/build/numenta/nupic.core/bindings/py/dist/wheels
+
+  # Install nupic.bindings and dependencies from wheels
+  - pip install --user --no-index --find-links=home/travis/build/numenta/nupic.core/bindings/py/dist/wheels nupic.bindings
 
   # Clone NAB
   - git clone https://github.com/numenta/NAB.git --depth 50
 
-install:
+  - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
 
-  - echo $PYTHONPATH
-  - echo $NUPIC
+
+
+install:
+  # Required for fetch_wheels.py
+  - pip install requests --user
+  # Required for one of the regression tests
+  - pip install automatatron --user
 
   # Fetches the binary distribution.
   - python fetch_wheels.py
-
-  # Install wheels we just downloaded.
   - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
-  - echo "Installing NuPIC ${NUPIC_VERSION} with wheels..."
-  - pip install https://s3-us-west-2.amazonaws.com/artifacts.numenta.org/numenta/nupic.core/releases/nupic.bindings/nupic.bindings-${NUPIC_CORE_VERSION}-cp27-none-linux_x86_64.whl
-
+  - echo "Installing NuPIC ${NUPIC_VERSION} from wheelhouse..."
   - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION}
-  
-  # Install NAB
-  - (cd NAB && python setup.py install)
+  - echo "Installing NAB..."
+  - (cd ${NAB} && python setup.py install --user)
 
 
 script:
+
+  - ls /home/travis/.local/lib/python2.7/site-packages
+  - ls /home/travis/.local/lib/python2.7/site-packages/pytest-xdist
+  - ls /home/travis/.local/lib/python2.7/site-packages/pytest-xdist/bin
 
   # NuPIC swarming tests
   - cd $NUPIC
