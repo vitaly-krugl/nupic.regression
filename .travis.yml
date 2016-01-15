@@ -76,7 +76,7 @@ install:
 
   - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
   - echo "Installing NuPIC ${NUPIC_VERSION} from wheelhouse..."
-  - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION}
+  - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION} --user
 
   - echo "Installing NAB..."
   - (cd ${NAB} && python setup.py install --user)
