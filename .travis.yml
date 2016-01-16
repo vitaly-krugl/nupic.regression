@@ -81,11 +81,11 @@ install:
   - echo "Installing NAB..."
   - (cd ${NAB} && python setup.py install --user)
 
-  # Required for one of the regression tests
-  - pip install automatatron --user
-
 
 script:
+
+  # DEBUGGIN
+  - python -c "from pkg_resources import get_distribution; print repr(get_distribution('pytest-xdist'))"
 
   # NuPIC swarming tests
   - cd $NUPIC
