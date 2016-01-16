@@ -39,10 +39,6 @@ env:
 
 before_install:
 
-  # DEBUGGIN
-  - python -c "from pkg_resources import get_distribution; print repr(get_distribution('pytest-xdist'))"
-  # DEBUGGIN
-
   - cd ${TRAVIS_BUILD_DIR}
 
   - NUPIC_SHA=`cat nupic_sha.txt`
@@ -69,6 +65,7 @@ before_install:
 
   - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
 
+
 install:
   # Required for fetch_wheels.py
   - pip install requests boto --user
@@ -81,21 +78,11 @@ install:
   - export PYTHONPATH=${PYTHONPATH}:/home/travis/.local/lib/python2.7/site-packages
   - pip install --use-wheel --find-links=wheelhouse nupic==${NUPIC_VERSION} --user
 
-  # DEBUGGIN
-  - python -c "from pkg_resources import get_distribution; print repr(get_distribution('pytest-xdist'))"
-  - ls /home/travis/.local/lib/python2.7/site-packages/pytest_xdist-1.8.dist-info
-  - printenv | sort
-  # DEBUGGIN
-
   - echo "Installing NAB..."
   - (cd ${NAB} && python setup.py install --user)
 
   # Required for one of the regression tests
   - pip install automatatron --user
-
-  # DEBUGGIN
-  - python -c "from pkg_resources import get_distribution; print repr(get_distribution('pytest-xdist'))"
-  # DEBUGGIN
 
 
 script:
