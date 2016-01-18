@@ -83,6 +83,7 @@ install:
 
 script:
 
+  - "echo PYTHONPATH: $PYTHONPATH"
   - ls /home/travis/.local/lib/python2.7/site-packages
   - pip install pytest-xdist --user
 
