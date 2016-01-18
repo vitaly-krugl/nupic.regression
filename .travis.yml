@@ -84,9 +84,6 @@ install:
 
 script:
 
-  # DEBUGGIN
-  - python -c "from pkg_resources import get_distribution; print repr(get_distribution('pytest-xdist'))"
-
   # NuPIC swarming tests
   - cd $NUPIC
   - ./scripts/run_nupic_tests.py -w || exit -1
