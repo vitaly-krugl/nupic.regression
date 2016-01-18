@@ -89,7 +89,7 @@ script:
 
   # NuPIC swarming tests
   - cd $NUPIC
-  - python ./scripts/run_nupic_tests.py -w || exit -1
+  - ./scripts/run_nupic_tests.py -w || exit -1
 
   # NuPIC example runs
   - . ./ci/travis/script-run-examples.sh
