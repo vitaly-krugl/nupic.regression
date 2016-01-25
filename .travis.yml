@@ -80,12 +80,14 @@ install:
   - echo "Installing NAB..."
   - (cd ${NAB} && python setup.py install --user)
 
+  # - "echo PYTHONPATH: $PYTHONPATH"
+  # - ls /home/travis/.local/lib/python2.7/site-packages
+  # - pip install pytest-xdist --user
+  
+  # For regression tests.
+  - pip install automatatron --user
 
 script:
-
-  - "echo PYTHONPATH: $PYTHONPATH"
-  - ls /home/travis/.local/lib/python2.7/site-packages
-  - pip install pytest-xdist --user
 
   - cd $NUPIC
 
