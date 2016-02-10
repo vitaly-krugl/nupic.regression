@@ -40,6 +40,7 @@ env:
 before_install:
 
   - pip install --ignore-installed --user pip
+  - pip install --upgrade pip
 
   - cd ${TRAVIS_BUILD_DIR}
 
