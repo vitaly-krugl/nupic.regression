@@ -72,6 +72,8 @@ before_install:
 install:
   # Required for fetch_wheels.py
   - pip install requests boto --user
+  # Make sure we have the right version of wheel
+  - pip install wheel==0.25.0 --ignore-installed --user
   # Fetches the binary distribution.
   - python fetch_wheels.py
 
