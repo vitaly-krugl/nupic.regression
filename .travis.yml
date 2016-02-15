@@ -39,9 +39,6 @@ env:
 
 before_install:
 
-  - pip install --ignore-installed --user pip
-  - pip install --upgrade pip
-
   - cd ${TRAVIS_BUILD_DIR}
 
   - NUPIC_SHA=`cat nupic_sha.txt`
@@ -72,8 +69,6 @@ before_install:
 install:
   # Required for fetch_wheels.py
   - pip install requests boto --user
-  # Make sure we have the right version of wheel
-  - pip install wheel==0.25.0 --ignore-installed --user
   # Fetches the binary distribution.
   - python fetch_wheels.py
 
