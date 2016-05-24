@@ -24,7 +24,7 @@ addons:
 notifications:
   email:
     recipients:
-      - "nupic-hackers@lists.numenta.org"
+      - "discourse-nupic-developers@numenta.org"
     on_success: change
     on_failure: change
   webhooks: "https://webhooks.gitter.im/e/68f77bae61efa5c931f8"
@@ -83,7 +83,7 @@ install:
   # - "echo PYTHONPATH: $PYTHONPATH"
   # - ls /home/travis/.local/lib/python2.7/site-packages
   # - pip install pytest-xdist --user
-  
+
   # For regression tests.
   - pip install automatatron --user
 
@@ -92,7 +92,7 @@ script:
   - cd $NUPIC
 
   # DEBUGGING: Trying to figure out why pytest-xdist is not available when running the swarming tests
-  # below. 
+  # below.
   # - python -c "from pkg_resources import get_distribution; print repr(get_distribution('pytest-xdist'))"
 
   # TODO: NuPIC swarming tests are commented out because there is a problem in Travis-CI environment
