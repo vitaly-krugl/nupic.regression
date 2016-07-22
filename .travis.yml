@@ -105,7 +105,7 @@ script:
   # Remove checked in results file then run NAB
   - cd $NAB
   - rm results/final_results.json
-  - python run.py -d numenta --detect --score --normalize --skipConfirmation
+  - python run.py -d numenta,numentaTM --detect --score --normalize --skipConfirmation
 
   - cd $TRAVIS_BUILD_DIR
 
