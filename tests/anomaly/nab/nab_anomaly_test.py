@@ -4,7 +4,7 @@ import os
 import unittest
 
 
-BENCHMARK_PATH = "tests/anomaly/nab/benchmark_results.json"
+BENCHMARK_RESULTS_PATH = "tests/anomaly/nab/benchmark_results.json"
 RESULTS_PATH = os.environ["NAB"] + "/results/final_results.json"
 EPS = 10e-2
 
@@ -21,7 +21,7 @@ class NABAnomalyTest(unittest.TestCase):
   def testNABScoresBenchmark(self):
     """Test that NAB on nupic produces expected scores."""
 
-    with open(BENCHMARK_PATH) as benchmarkFile:
+    with open(BENCHMARK_RESULTS_PATH) as benchmarkFile:
       benchmarkData = json.load(benchmarkFile)
 
     with open(RESULTS_PATH) as resultsFile:
@@ -31,16 +31,18 @@ class NABAnomalyTest(unittest.TestCase):
       benchmarkValue = benchmarkData["numenta"][benchmarkName]
       resultValue = resultsData["numenta"][benchmarkName]
       self.assertAlmostEqual(benchmarkValue, resultValue, delta=EPS, msg=
-          "Numenta detector scores don't check out for the {} profile".
-          format(benchmarkName)
+          "Numenta detector scores don't check out for the {} profile. "
+          "Expected {}, but the run yielded {}.".
+          format(benchmarkName, benchmarkValue, resultValue)
       )
 
     for benchmarkName in benchmarkData["numentaTM"]:
       benchmarkValue = benchmarkData["numentaTM"][benchmarkName]
       resultValue = resultsData["numentaTM"][benchmarkName]
       self.assertAlmostEqual(benchmarkValue, resultValue, delta=EPS, msg=
-          "Numenta TM detector scores don't check out for the {} profile".
-          format(benchmarkName)
+          "NumentaTM detector scores don't check out for the {} profile. "
+          "Expected {}, but the run yielded {}.".
+          format(benchmarkName, benchmarkValue, resultValue)
       )
 
 
