@@ -102,9 +102,8 @@ script:
   # NuPIC example runs
   - . ./ci/travis/script-run-examples.sh
 
-  # Remove checked in results file then run NAB
+  # Run NAB
   - cd $NAB
-  - rm results/final_results.json
   - python run.py -d numenta,numentaTM --detect --score --normalize --skipConfirmation
 
   - cd $TRAVIS_BUILD_DIR
