@@ -72,6 +72,9 @@ install:
   # Fetches the binary distribution.
   - python fetch_wheels.py
 
+  # nupic.bindings requires pycapnp on unix platforms
+  - pip install pycapnp==0.5.8 --user
+
   - NUPIC_VERSION=`cat ${NUPIC}/VERSION`
   - echo "Installing NuPIC ${NUPIC_VERSION} from wheelhouse..."
   - ls -l wheelhouse
