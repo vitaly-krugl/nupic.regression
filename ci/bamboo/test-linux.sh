@@ -55,4 +55,4 @@ PYTEST_OPTS="--verbose --boxed --junit-xml=`pwd`/nupic-test-results.xml --cov nu
 
 NUPIC="${NUPIC_ROOT_DIR}" \
 USER=$(whoami) \
-  python setup.py test --pytest-args="${PYTEST_OPTS} unit integration"
+  py.test tests
