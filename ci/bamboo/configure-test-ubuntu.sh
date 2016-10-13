@@ -66,9 +66,25 @@ DEBIAN_FRONTEND=noninteractive \
 
 
 #
-# Install pip/setuptools/wheel
+# Install pip/setuptools
 #
-${MY_DIR}/install-pip-setuptools-wheel.sh
+set -o errexit
+set -o xtrace
+
+# Tool requirements:
+#   Fleshed out PEP-508 support (Dependency Specification)
+_PIP_VER="8.1.2"
+_SETUPTOOLS_VER="25.2.0"
+
+# Download get-pip.py
+curl --silent --show-error --retry 5 -O http://releases.numenta.org/pip/1ebd3cb7a5a3073058d0c9552ab074bd/get-pip.py
+
+python get-pip.py "$@" --ignore-installed \
+  pip==${_PIP_VER} \
+  setuptools==${_SETUPTOOLS_VER} \
+
+python -c 'import pip; print "pip version=", pip.__version__'
+python -c 'import setuptools; print "setuptools version=", setuptools.__version__'
 
 
 # Hack to resolve SNIMissingWarning
