@@ -89,3 +89,5 @@ python -c 'import setuptools; print "setuptools version=", setuptools.__version_
 
 # Hack to resolve SNIMissingWarning
 pip install urllib3[secure]
+
+pip install automatatron

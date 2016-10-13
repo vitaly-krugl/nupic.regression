@@ -42,11 +42,6 @@ MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 NUPIC_ROOT_DIR="$( cd "${MY_DIR}/../.." && pwd )"
 
-
-# Install nupic
-pip install nupic-*.whl
-
-
 #
 # Test
 #
