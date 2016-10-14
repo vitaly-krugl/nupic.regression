@@ -45,8 +45,6 @@ apt-get install -y \
     python \
     python2.7 \
     python2.7-dev
-    libffi-dev \
-    libssl-dev \
     curl \
     build-essential \
     openssl
