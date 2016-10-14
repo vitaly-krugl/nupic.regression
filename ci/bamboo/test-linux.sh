@@ -49,7 +49,6 @@ NUPIC_ROOT_DIR="$( cd "${MY_DIR}/../.." && pwd )"
 # Some tests require NUPIC env var to locate config files.
 # Some nupic config files reference USER env var, so it needs to be defined.
 
-
 # Run unit and integration tests (integration tests require mysql server)
 PYTEST_OPTS="--verbose --boxed --junit-xml=`pwd`/nupic-test-results.xml --cov nupic --cov-report html"
 
