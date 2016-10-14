@@ -42,13 +42,9 @@ apt-get install -y \
     curl \
     wget \
     git \
-    build-essential \
     python \
     python2.7 \
     python2.7-dev
-    apt-utils \
-    python2.7 \
-    python2.7-dev \
     libffi-dev \
     libssl-dev \
     curl \
