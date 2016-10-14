@@ -101,12 +101,9 @@ pip install automatatron
 
 echo "Installing NAB..."
 if [ -d "NAB" ]; then
-    ls -la NAB
-    (cd $NAB && git rev-parse HEAD)
-    (cd $NAB && git remote --verbose)
-else
-    git clone https://github.com/numenta/NAB.git --depth 50
+    rm -rf NAB
 fi
+git clone https://github.com/numenta/NAB.git --depth 50
 export NAB="${NUPIC_ROOT_DIR}/NAB"
 (cd ${NAB} && python setup.py install --user)
 
