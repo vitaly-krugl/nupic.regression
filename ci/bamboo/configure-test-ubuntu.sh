@@ -35,6 +35,7 @@ fi
 export USER
 
 MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+NUPIC_ROOT_DIR="$( cd "${MY_DIR}/../.." && pwd )"
 
 echo "Setting up linux dependencies..."
 
@@ -98,7 +99,7 @@ pip install automatatron
 
 echo "Installing NAB..."
 git clone https://github.com/numenta/NAB.git --depth 50
-export NAB="${MY_DIR}/NAB"
+export NAB="${NUPIC_ROOT_DIR}/NAB"
 (cd ${NAB} && python setup.py install --user)
 
 echo "Installing NuPIC..."
