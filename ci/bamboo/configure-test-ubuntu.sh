@@ -94,6 +94,7 @@ python -c 'import setuptools; print "setuptools version=", setuptools.__version_
 # Hack to resolve SNIMissingWarning
 pip install urllib3[secure]
 
+pip install pandas==0.19.0
 pip install numpy==1.9.2
 
 # We use this for one regression test
