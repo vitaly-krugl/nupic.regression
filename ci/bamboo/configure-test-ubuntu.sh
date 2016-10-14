@@ -51,20 +51,20 @@ NUPIC_ROOT_DIR="$( cd "${MY_DIR}/../.." && pwd )"
 # Install and start mysql (needed for integration and swarming tests)
 #
 
-echo "Configuring and staring MySQL..."
-
-# Install, suppressing prompt for admin password, settling for blank password
-DEBIAN_FRONTEND=noninteractive \
-  debconf-set-selections <<< 'mysql-server mysql-server/root_password password'
-
-DEBIAN_FRONTEND=noninteractive \
-  debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password'
-
-DEBIAN_FRONTEND=noninteractive \
-  apt-get -y install mysql-server
-
-# Start mysql server
-/usr/bin/mysqld_safe &
+# echo "Configuring and starting MySQL..."
+#
+# # Install, suppressing prompt for admin password, settling for blank password
+# DEBIAN_FRONTEND=noninteractive \
+#   debconf-set-selections <<< 'mysql-server mysql-server/root_password password'
+#
+# DEBIAN_FRONTEND=noninteractive \
+#   debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password'
+#
+# DEBIAN_FRONTEND=noninteractive \
+#   apt-get -y install mysql-server
+#
+# # Start mysql server
+# /usr/bin/mysqld_safe &
 
 # echo "Installing pip and setuptools..."
 #
