@@ -44,7 +44,8 @@ apt-get install -y \
     git \
     python \
     python2.7 \
-    python2.7-dev
+    python2.7-dev \
+    openssl
 
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 update-alternatives --set python /usr/bin/python2.7
