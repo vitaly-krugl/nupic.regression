@@ -36,6 +36,8 @@ export USER
 
 MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+echo "Setting up linux dependencies..."
+
 # Install OS dependencies, assuming stock ubuntu:latest
 apt-get update
 apt-get install -y \
@@ -45,15 +47,17 @@ apt-get install -y \
     python \
     python2.7 \
     python2.7-dev \
-    openssl
+    openssl \
+    libffi-dev
 
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 update-alternatives --set python /usr/bin/python2.7
 
-
 #
 # Install and start mysql (needed for integration and swarming tests)
 #
+
+echo "Configuring and staring MySQL..."
 
 # Install, suppressing prompt for admin password, settling for blank password
 DEBIAN_FRONTEND=noninteractive \
@@ -68,12 +72,7 @@ DEBIAN_FRONTEND=noninteractive \
 # Start mysql server
 /usr/bin/mysqld_safe &
 
-
-#
-# Install pip/setuptools
-#
-set -o errexit
-set -o xtrace
+echo "Installing pip and setuptools..."
 
 # Tool requirements:
 #   Fleshed out PEP-508 support (Dependency Specification)
@@ -90,18 +89,16 @@ python get-pip.py "$@" --ignore-installed \
 python -c 'import pip; print "pip version=", pip.__version__'
 python -c 'import setuptools; print "setuptools version=", setuptools.__version__'
 
-
 # Hack to resolve SNIMissingWarning
 pip install urllib3[secure]
 
 # We use this for one regression test
 pip install automatatron
 
-# Set up NAB
+echo "Installing NAB..."
 git clone https://github.com/numenta/NAB.git --depth 50
 export NAB="${MY_DIR}/NAB"
-echo "Installing NAB..."
 (cd ${NAB} && python setup.py install --user)
 
-# Install nupic
+echo "Installing NuPIC..."
 pip install nupic-*.whl
