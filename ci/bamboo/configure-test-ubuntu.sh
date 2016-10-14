@@ -28,20 +28,32 @@
 set -o errexit
 set -o xtrace
 
+# Prepare environment
+if [ -z "${USER}" ]; then
+    USER="docker"
+fi
+export USER
 
 MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-
+# Install OS dependencies, assuming stock ubuntu:latest
 apt-get update
 apt-get install -y \
-  apt-utils \
-  python2.7 \
-  python2.7-dev \
-  libffi-dev \
-  libssl-dev \
-  curl \
-  build-essential \
-  openssl
+    curl \
+    wget \
+    git \
+    build-essential \
+    python \
+    python2.7 \
+    python2.7-dev
+    apt-utils \
+    python2.7 \
+    python2.7-dev \
+    libffi-dev \
+    libssl-dev \
+    curl \
+    build-essential \
+    openssl
 
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 update-alternatives --set python /usr/bin/python2.7
@@ -90,4 +102,14 @@ python -c 'import setuptools; print "setuptools version=", setuptools.__version_
 # Hack to resolve SNIMissingWarning
 pip install urllib3[secure]
 
+# We use this for one regression test
 pip install automatatron
+
+# Set up NAB
+git clone https://github.com/numenta/NAB.git --depth 50
+export NAB="${MY_DIR}/NAB"
+echo "Installing NAB..."
+(cd ${NAB} && python setup.py install --user)
+
+# Install nupic
+pip install nupic-*.whl
