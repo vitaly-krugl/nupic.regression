@@ -39,8 +39,8 @@ set -o xtrace
 
 
 MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 NUPIC_ROOT_DIR="$( cd "${MY_DIR}/../.." && pwd )"
+export NAB="${NUPIC_ROOT_DIR}/NAB"
 
 #
 # Test
