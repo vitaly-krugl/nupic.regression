@@ -46,8 +46,7 @@ apt-get install -y \
     python2.7 \
     python2.7-dev
     curl \
-    build-essential \
-    openssl
+    build-essential
 
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 update-alternatives --set python /usr/bin/python2.7
