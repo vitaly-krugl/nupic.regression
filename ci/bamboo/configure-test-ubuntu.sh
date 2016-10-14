@@ -48,6 +48,7 @@ apt-get install -y \
     python2.7 \
     python2.7-dev \
     openssl \
+    libssl-dev \
     libffi-dev
 
 update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
