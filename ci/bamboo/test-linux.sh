@@ -53,6 +53,6 @@ export NAB="${NUPIC_ROOT_DIR}/NAB"
 # Run tests with pytest options per nupic.core/setup.cfg
 NUPIC="${NUPIC_ROOT_DIR}" \
 USER=$(whoami) \
-  py.test tests
+  py.test tests || true
 
 ls -la
