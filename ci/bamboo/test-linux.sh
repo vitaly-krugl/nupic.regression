@@ -40,6 +40,8 @@ set -o xtrace
 
 MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 NUPIC_ROOT_DIR="$( cd "${MY_DIR}/../.." && pwd )"
+TEST_RESULTS_DIR="${NUPIC_ROOT_DIR}/test_results"
+
 export NAB="${NUPIC_ROOT_DIR}/NAB"
 
 #
@@ -49,9 +51,12 @@ export NAB="${NUPIC_ROOT_DIR}/NAB"
 # Some tests require NUPIC env var to locate config files.
 # Some nupic config files reference USER env var, so it needs to be defined.
 
-# Run unit and integration tests (integration tests require mysql server)
-PYTEST_OPTS="--verbose --boxed --junit-xml=`pwd`/nupic-test-results.xml --cov nupic --cov-report html"
+mkdir ${TEST_RESULTS_DIR}
+cd ${TEST_RESULTS_DIR}    # so that py.test will deposit its artifacts here
 
+# Run tests with pytest options per nupic.core/setup.cfg
 NUPIC="${NUPIC_ROOT_DIR}" \
 USER=$(whoami) \
-  py.test tests
+  py.test ../tests
+
+ls -la
