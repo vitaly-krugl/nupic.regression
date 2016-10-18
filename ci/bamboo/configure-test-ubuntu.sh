@@ -83,6 +83,9 @@ NUPIC_ROOT_DIR="$( cd "${MY_DIR}/../.." && pwd )"
 # python -c 'import pip; print "pip version=", pip.__version__'
 # python -c 'import setuptools; print "setuptools version=", setuptools.__version__'
 
+# cryptography problem: http://stackoverflow.com/questions/39829473/cryptography-assertionerror-sorry-but-this-version-only-supports-100-named-gro
+pip install --no-binary pycparser
+
 # Hack to resolve SNIMissingWarning
 pip install urllib3[secure]
 
