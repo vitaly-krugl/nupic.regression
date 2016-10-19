@@ -50,9 +50,8 @@ export NAB="${NUPIC_ROOT_DIR}/NAB"
 # Some tests require NUPIC env var to locate config files.
 # Some nupic config files reference USER env var, so it needs to be defined.
 
-# Run tests with pytest options per nupic.core/setup.cfg
+# Run tests with pytest options per nupic.core/setup.cfg. The "|| true" is added
+# at the end cause it prevents test failures from returning non-zero exit status
 NUPIC="${NUPIC_ROOT_DIR}" \
 USER=$(whoami) \
   py.test tests || true
-
-ls -la
