@@ -19,12 +19,8 @@
 #
 # http://numenta.org/licenses/
 # -----------------------------------------------------------------------------
-
+#
 # Run NuPIC tests on Linux.
-
-# ASSUMES:
-#   1. Current working directory is root of nupic source tree
-#   2. The nupic wheel is in the current working directory
 #
 # OUTPUTS:
 #
@@ -33,15 +29,8 @@
 #
 # code coverage report: in tests/htmlcov and tests/.coverage
 
-
 set -o errexit
 set -o xtrace
-
-
-MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-NUPIC_ROOT_DIR="$( cd "${MY_DIR}/../.." && pwd )"
-
-export NAB="${NUPIC_ROOT_DIR}/NAB"
 
 #
 # Test
@@ -52,6 +41,7 @@ export NAB="${NUPIC_ROOT_DIR}/NAB"
 
 # Run tests with pytest options per nupic.core/setup.cfg. The "|| true" is added
 # at the end cause it prevents test failures from returning non-zero exit status
-NUPIC="${NUPIC_ROOT_DIR}" \
+NAB=$(cd NAB && pwd) \
+NUPIC=$(cd nupic && pwd) \
 USER=$(whoami) \
-  py.test tests || true
+py.test tests || true
