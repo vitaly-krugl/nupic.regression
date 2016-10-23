@@ -41,7 +41,11 @@ set -o xtrace
 
 # Run tests with pytest options per nupic.core/setup.cfg. The "|| true" is added
 # at the end cause it prevents test failures from returning non-zero exit status
-NAB=$(cd NAB && pwd) \
+pushd NAB
+export NAB=$(pwd)
+python run.py -d numenta,numentaTM --detect --score --normalize --skipConfirmation
+popd
+
 NUPIC=$(cd nupic && pwd) \
 USER=$(whoami) \
 py.test tests || true
