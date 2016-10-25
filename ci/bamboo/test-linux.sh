@@ -44,6 +44,7 @@ set -o xtrace
 pushd NAB
 export NAB=$(pwd)
 python run.py -d numenta,numentaTM --detect --score --normalize --skipConfirmation
+cat results/final_results.json
 popd
 
 NUPIC=$(cd nupic && pwd) \
