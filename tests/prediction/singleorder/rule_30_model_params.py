@@ -64,7 +64,7 @@ MODEL_PARAMS = \
                    'spParams': { 'columnCount': 2048,
                                  'globalInhibition': 1,
                                  'inputWidth': 0,
-                                 'maxBoost': 2.0,
+                                 'boostStrength': 2.0,
                                  'numActiveColumnsPerInhArea': 40,
                                  'potentialPct': 0.9,
                                  'seed': 1956,
