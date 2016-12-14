@@ -24,8 +24,7 @@ Included in `tests/anomaly/` is a regression test for [NAB](https://github.com/n
 
 ### Dependencies for running locally
 
-    pip install requests
-    pip install automatatron
+    pip install -r requirements.txt
 
 ## How it works
 
