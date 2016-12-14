@@ -5,3 +5,6 @@ nupic-linux64-*/
 *.pyc
 wheelhouse
 .cache
+
+junit-test-results.xml
+

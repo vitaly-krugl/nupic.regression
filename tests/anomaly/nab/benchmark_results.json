@@ -1,0 +1,12 @@
+{
+    "numenta": {
+        "reward_low_FN_rate": 74.36,
+        "reward_low_FP_rate": 62.15,
+        "standard": 70.16
+    },
+    "numentaTM": {
+        "reward_low_FN_rate": 69.18,
+        "reward_low_FP_rate": 56.48,
+        "standard": 64.55
+    }
+}

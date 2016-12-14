@@ -45,12 +45,14 @@ class Rule30AutomataPredictionTest(unittest.TestCase):
       else: 
         prediction_history.append(0.0)
       
-      correctness = reduce(lambda x, y: x + y, prediction_history) / len(prediction_history)
-      
+      correctness = reduce(lambda x, y: x + y,
+                           prediction_history) / len(prediction_history)
+
       if count == iterations:
         unittest.TestCase.assertEqual(
           self, 1.0, correctness, 
-          "Predictions should be 100 percent correct after reaching %i iterations." % iterations
+          "Predictions should be 100 percent correct after reaching %i "
+          "iterations." % iterations
         )
 
       result = model.run(input_row)
